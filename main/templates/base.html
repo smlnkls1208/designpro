@@ -18,8 +18,16 @@
                 {% if user.is_authenticated %}
                 <li>Приветствуем вас, {{ user.username }}!</li>
                 <li><a href="{% url 'my_requests' %}">Мои заявки</a></li>
-                <li><a href="{% url 'logout' %}">Выход</a></li>
-                    {% if user.is_staff %}
+                <li>
+                    <form method="post" action="{% url 'logout' %}" style="display: inline;">
+                        {% csrf_token %}
+                        <button type="submit"
+                                style="background: none; border: none; color: blue; text-decoration: underline; cursor: pointer;">
+                            Выход
+                        </button>
+                    </form>
+                </li>
+                {% if user.is_staff %}
                         <hr><hr>
                 <li><strong>Интерфейс администратора</strong></li>
                         <li><a href="{% url 'admin_requests' %}">Все заявки</a></li>
