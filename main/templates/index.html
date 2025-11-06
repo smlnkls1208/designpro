@@ -3,13 +3,13 @@
 <h1>Design.pro — Дизайн интерьеров</h1>
 <p>Создаём интерьеры, которые вдохновляют.</p>
 
-<h2>Заявок в работе: {{ in_progress_count }}</h2>
+<h2 style="margin-top:40px;">Заявок в работе: {{ in_progress_count }}</h2>
 
-<h2>Последние выполненные работы:</h2>
+<h2 style="margin-top:50px;">Последние выполненные работы:</h2>
 {% if completed_requests %}
-    <div>
+    <div style="display:flex; justify-content: space-around; margin-top:50px;">
     {% for req in completed_requests %}
-        <div style="margin-bottom: 20px; padding: 10px; border: 1px solid #eee; border-radius: 6px;">
+        <div style="margin-bottom: 20px; padding: 10px; border: 2px solid black; border-radius: 2px;">
             <h3>{{ req.title }}</h3>
             <p><strong>Категория:</strong> {{ req.category.name }}</p>
             <p><small>{{ req.created_at|date:"d.m.Y H:i" }}</small></p>

@@ -13,7 +13,7 @@
 </form>
 
 {% if requests %}
-    <ul>
+    <ul style="margin-top:30px; display:flex; justify-content: space-around; flex-wrap:wrap; gap: 70px;">
     {% for req in requests %}
         <li>
             <strong>{{ req.title }}</strong> ({{ req.get_status_display }})
