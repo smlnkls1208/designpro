@@ -13,7 +13,7 @@
 </form>
 
 {% if requests %}
-    <ul style="margin-top:30px; display:flex; justify-content: space-around; flex-wrap:wrap; gap: 70px;">
+<ul class="requests-list">
     {% for req in requests %}
         <li>
             <strong>{{ req.title }}</strong> ({{ req.get_status_display }})
@@ -36,10 +36,9 @@
 
             {% if req.status == 'new' %}
                 <br>
-                <a href="{% url 'change_status' req.id %}" class="btn btn-warning">Изменить статус</a>
+                <a href="{% url 'change_status' req.id %}" class="btn btn-warning" style="margin-top:30px">Изменить статус</a>
             {% endif %}
         </li>
-        <hr>
     {% endfor %}
     </ul>
 {% else %}

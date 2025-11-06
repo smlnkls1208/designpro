@@ -10,3 +10,8 @@ class DesignRequestAdmin(admin.ModelAdmin):
     list_display = ['title', 'user', 'category', 'status', 'created_at']
     list_filter = ['status', 'category', 'created_at']
     readonly_fields = ['created_at']
+
+    def get_readonly_fields(self, request, obj=None):
+        if obj and obj.status != 'new':
+            return self.readonly_fields + ('status',)
+        return self.readonly_fields

@@ -1,37 +1,26 @@
 {% extends "base.html" %}
-
 {% block content %}
-<h2>Вход на сайт</h2>
-<hr>
-
-{% if form.errors %}
-  <p>Неверный логин или пароль. Попробуйте снова.</p>
-{% endif %}
-
-{% if next %}
-  {% if user.is_authenticated %}
-    <p>Ваша учётная запись не имеет доступа к этой странице. Пожалуйста, войдите под учётной записью с необходимыми правами.</p>
-  {% else %}
-    <p>Пожалуйста, войдите, чтобы увидеть эту страницу.</p>
-  {% endif %}
-{% endif %}
-
-<form method="post" action="{% url 'login' %}">
-  {% csrf_token %}
-  <table>
-    <tr>
-      <td><label for="{{ form.username.id_for_label }}">Логин:</label></td>
-      <td>{{ form.username }}</td>
-    </tr>
-    <tr>
-      <td><label for="{{ form.password.id_for_label }}">Пароль:</label></td>
-      <td>{{ form.password }}</td>
-    </tr>
-  </table>
-  <input type="submit" value="Войти" />
-  <input type="hidden" name="next" value="{{ next }}" />
-</form>
-<hr>
-
-<p><a href="{% url 'password_reset' %}">Забыли пароль?</a></p>
+<div class="auth-container">
+  <div class="auth-card">
+    <h2>Вход на сайт</h2>
+    {% if form.errors %}
+      <div class="alert alert-danger">Неверный логин или пароль.</div>
+    {% endif %}
+    <form method="post" action="{% url 'login' %}">
+      {% csrf_token %}
+      <div class="form-group">
+        <label for="{{ form.username.id_for_label }}">Логин:</label>
+        {{ form.username }}
+      </div>
+      <div class="form-group">
+        <label for="{{ form.password.id_for_label }}">Пароль:</label>
+        {{ form.password }}
+      </div>
+      <button type="submit" class="btn">Войти</button>
+    </form>
+    <div class="form-footer">
+      <p><a href="{% url 'password_reset' %}">Забыли пароль?</a></p>
+    </div>
+  </div>
+</div>
 {% endblock %}

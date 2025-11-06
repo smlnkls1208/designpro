@@ -4,7 +4,7 @@
 <p>Вы уверены, что хотите удалить заявку: <strong>{{ request.title }}</strong>?</p>
 <form method="post">
     {% csrf_token %}
-    <button type="submit" style="color: red;">Да, удалить</button>
-    <a href="{% url 'my_requests' %}">Отмена</a>
+    <button type="submit" class="btn btn-danger">Да, удалить</button>
+    <a href="{% url 'my_requests' %}" class="btn btn-outline-secondary">Отмена</a>
 </form>
 {% endblock %}

@@ -1,10 +1,42 @@
 {% extends "base.html" %}
 {% block content %}
-<h2>Регистрация</h2>
-<hr>
-<form method="post">
-    {% csrf_token %}
-    {{ form.as_p }}
-    <button type="submit">Зарегистрироваться</button>
-</form>
+<div class="auth-container">
+    <div class="auth-card">
+        <h2>Регистрация</h2>
+        <form method="post">
+            {% csrf_token %}
+            <div class="form-group">
+                {{ form.full_name.label_tag }}
+                {{ form.full_name }}
+                {{ form.full_name.errors }}
+            </div>
+            <div class="form-group">
+                {{ form.username.label_tag }}
+                {{ form.username }}
+                {{ form.username.errors }}
+            </div>
+            <div class="form-group">
+                {{ form.email.label_tag }}
+                {{ form.email }}
+                {{ form.email.errors }}
+            </div>
+            <div class="form-group">
+                {{ form.password.label_tag }}
+                {{ form.password }}
+                {{ form.password.errors }}
+            </div>
+            <div class="form-group">
+                {{ form.password_confirm.label_tag }}
+                {{ form.password_confirm }}
+                {{ form.password_confirm.errors }}
+            </div>
+            <div class="form-check">
+                {{ form.consent }}
+                {{ form.consent.label_tag }}
+                {{ form.consent.errors }}
+            </div>
+            <button type="submit" class="btn">Зарегистрироваться</button>
+        </form>
+    </div>
+</div>
 {% endblock %}

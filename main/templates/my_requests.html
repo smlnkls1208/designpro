@@ -13,7 +13,7 @@
 </form>
 
 {% if requests %}
-    <ul style="margin-top:30px; display:flex; justify-content: space-around; flex-wrap:wrap; gap: 70px;">
+<ul class="requests-list">
     {% for req in requests %}
         <li>
             <strong>{{ req.title }}</strong> ({{ req.get_status_display }})
@@ -37,7 +37,6 @@
                 <br><a href="{% url 'delete_request' req.id %}" style="color: red;">Удалить</a>
             {% endif %}
         </li>
-        <hr>
     {% endfor %}
     </ul>
 {% else %}
