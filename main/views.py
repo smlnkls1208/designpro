@@ -1,13 +1,10 @@
 from django.shortcuts import render,redirect, get_object_or_404
-from django.http import HttpResponse
 from django.contrib.auth.models import User
-from .forms import RegisterForm
+from .forms import RegisterForm, DesignRequestForm, ChangeStatusForm
 from django.contrib.auth.decorators import login_required
-from .forms import DesignRequestForm
-from .models import DesignRequest
+from .models import DesignRequest, UserProfile
 from django.http import HttpResponseForbidden
 from django.contrib.admin.views.decorators import staff_member_required
-from .forms import ChangeStatusForm
 
 
 
@@ -35,7 +32,6 @@ def register(request):
                 email=form.cleaned_data['email'],
                 password=form.cleaned_data['password']
             )
-            from .models import UserProfile
             UserProfile.objects.create(user=user, full_name=form.cleaned_data['full_name'])
             return redirect('login')
     else:
@@ -88,8 +84,6 @@ def delete_request(request, request_id):
 
 
 
-
-
 @staff_member_required
 def change_status(request, request_id):
     design_request = get_object_or_404(DesignRequest, id=request_id)
@@ -109,6 +103,7 @@ def change_status(request, request_id):
         'form': form,
         'request_obj': design_request
     })
+
 
 @staff_member_required
 def admin_requests(request):
